@@ -1,0 +1,20 @@
+[
+  {
+    "id": 10001,
+    "category": {
+      "id": 1,
+      "name": "c"
+    },
+    "name": "doggie",
+    "photoUrls": [
+      ""
+    ],
+    "tags": [
+      {
+        "id": 1,
+        "name": "dt"
+      }
+    ],
+    "status": "sold"
+  }
+]
