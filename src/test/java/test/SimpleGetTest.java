@@ -1,8 +1,8 @@
 package test;
 
-import org.somecompany.petstorepactclient.api.PetApi;
-import org.somecompany.petstorepactclient.invoker.ApiClient;
-import org.somecompany.petstorepactclient.model.Pet;
+import generated.client.api.PetApi;
+import generated.client.invoker.ApiClient;
+import generated.client.model.Pet;
 import com.atlassian.oai.validator.restassured.OpenApiValidationFilter;
 import container.PetStoreContainer;
 import io.restassured.builder.RequestSpecBuilder;
@@ -16,8 +16,8 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.Arrays;
 
-import static org.somecompany.petstorepactclient.invoker.GsonObjectMapper.gson;
-import static org.somecompany.petstorepactclient.model.Pet.StatusEnum.SOLD;
+import static generated.client.invoker.GsonObjectMapper.gson;
+import static generated.client.model.Pet.StatusEnum.SOLD;
 import static io.restassured.RestAssured.config;
 import static io.restassured.config.ObjectMapperConfig.objectMapperConfig;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,11 +25,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Testcontainers
 public class SimpleGetTest {
 
-    private static PetApi api;
-    private static final String SPEC = "/swagger.json";
+    static PetApi api;
+    static final String SPEC = "/swagger.json";
 
     @Container
-    private static final PetStoreContainer PET_STORE_CONTAINER = new PetStoreContainer();
+    static final PetStoreContainer PET_STORE_CONTAINER = new PetStoreContainer();
 
     @BeforeAll
     static void createApi() {
@@ -43,7 +43,7 @@ public class SimpleGetTest {
     }
 
     @Test
-    public void shouldFindSoldPets() {
+    void shouldFindSoldPets() {
         Pet[] pets = api.findPetsByStatus()
                 .statusQuery(SOLD.getValue())
                 .execute(ResponseOptions::andReturn)
